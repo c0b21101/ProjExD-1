@@ -46,4 +46,4 @@ if __name__ == "__main__":
         else:
             print("-" * 20)
     ed = datetime.datetime.now()
-    print(f"所要時間 :{(ed-st).seconds}s")
+    print(f"所要時間 :{(ed-st).seconds} s")
