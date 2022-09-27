@@ -9,7 +9,7 @@ def kaito(seikai):
     if ans in seikai:
         return "正解"
     else:
-        return "不 正 解"
+        return "不正解"
     
 if __name__ == "__main__":
     toi_lst = [{"q":"サザエの旦那の名前は?", "a":["ますお", "マスオ", "MASUO"]},
