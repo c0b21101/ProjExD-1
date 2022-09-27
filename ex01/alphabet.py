@@ -37,7 +37,7 @@ def kaito(ans):
         return True
     return False
 if __name__ == "__main__":
-    alh = [chr(i+65) for i in range(26)]
+    alh = [chr(i + 65) for i in range(26)]
     nai_moji = shutudai(alh)
     for i in range(chance):
         hantei = kaito(nai_moji)
