@@ -11,11 +11,12 @@ def shutudai(alh):
     for i in moji:
       print(i, end = " ")
     print()
+    
     nai_moji = random.sample(moji, ke_moji)
     print("表示文字", end = " ")
     for i in moji:
         if i not in nai_moji:
-            print(i, end = " ")
+            print(i, end = " ")         
     print()
     print("デバック用欠損文字", nai_moji)
     return nai_moji
