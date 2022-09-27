@@ -7,12 +7,12 @@ chance = 2 # 試行回数
 
 def shutudai(alh):
     moji = random.sample(alh, tai_moji)
-    print("対象文字", end = "")
+    print("対象文字", end = " ")
     for i in moji:
       print(i, end = " ")
     print()
     nai_moji = random.sample(moji, ke_moji)
-    print("表示文字", end = "")
+    print("表示文字", end = " ")
     for i in moji:
         if i not in nai_moji:
             print(i, end = " ")
