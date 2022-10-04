@@ -51,17 +51,16 @@ for i, num in enumerate(operators, 1):
     btn.grid(row=tate_k, column=3 - yoko_k)
     tate_k += 1
 
+keisan = ["00", "."]
+for i, num in enumerate(keisan, 0):
+    btn = tk.Button(root, text=f"{num}", font=("", 30), width=4, height=2)
+    btn.bind("<1>", click_number)
+    btn.grid(row=tate, column=yoko + i)
+    
+
 btn = tk.Button(root, text="=", font=("", 30), width=4, height=2, bg = "gray")
 btn.bind("<1>", click_equal)
-btn.grid(row=tate, column=yoko + 2)
-
-btn = tk.Button(root, text=".", font=("", 30), width=4, height=2)
-btn.bind("<1>", click_number)
-btn.grid(row=tate, column=yoko + 1)
-
-btn = tk.Button(root, text="00", font=("", 30), width=4, height=2)
-btn.bind("<1>", click_number)
-btn.grid(row=tate, column=yoko)
+btn.grid(row=5, column=3)
 
 btn = tk.Button(root, text="AC", font=("", 30), width=4, height=2, bg = "gray")
 btn.bind("<1>", click_ac)
