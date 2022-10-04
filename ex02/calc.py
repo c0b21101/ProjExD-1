@@ -7,7 +7,6 @@ def click_number(event): # 練習3
     #tkm.showinfo(f"{num}", f"{num}のボタンが押されました")
     entry.insert(tk.END, num) # 練習5
 
-
 def click_equal(event):
     eqn = entry.get()
     res = eval(eqn)
@@ -16,7 +15,6 @@ def click_equal(event):
 
 def click_ac(event):
     entry.delete(0, tk.END)
-
 
 root = tk.Tk() # 練習1
 root.geometry("400x600")
