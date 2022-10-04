@@ -8,8 +8,9 @@ root.geometry("300x500")
 
 def button_click(event):
     btn = event.widget
-    txt = btn["text"]
-    tkm.showinfo(txt, f"{txt}ボタンがクリックされました")
+    num = btn["text"]
+    #tkm.showinfo(num, f"{num}ボタンがクリックされました")
+    entry.insert(tk.END, num)
 
 entry = tk.Entry(root, width=10, font=("Times New Roman", 40), justify="right")
 entry.grid(row=0, column=0, columnspan=3)
