@@ -57,7 +57,6 @@ for i, num in enumerate(keisan, 0):
     btn.bind("<1>", click_number)
     btn.grid(row=tate, column=yoko + i)
     
-
 btn = tk.Button(root, text="=", font=("", 30), width=4, height=2, bg = "gray")
 btn.bind("<1>", click_equal)
 btn.grid(row=5, column=3)
