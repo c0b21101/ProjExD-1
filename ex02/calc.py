@@ -12,14 +12,16 @@ def button_click(event):
     #tkm.showinfo(num, f"{num}ボタンがクリックされました")
     entry.insert(tk.END, num)
 
-entry = tk.Entry(root, width=10, font=("Times New Roman", 40), justify="right")
+entry = tk.Entry(root, width=10, font=(" ", 40), justify="right")
 entry.grid(row=0, column=0, columnspan=3)
 
 tate = 1
 yoko = 0
+number = list(reversed(range(10)))
+kigou = ["+"]
 
-for n, i in enumerate(reversed(range(10)), 1):    
-    btn = tk.Button(root, text=f"{i}", font=("Times New Roman", 30), width=4, height=2)
+for n, i in enumerate(number + kigou , 1):    
+    btn = tk.Button(root, text=f"{i}", font=(" ", 30), width=4, height=2)
     btn.grid(row=tate, column=yoko)
     yoko += 1
     if n % 3 == 0:
