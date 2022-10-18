@@ -15,14 +15,19 @@ def key_up(event):
 def main_proc():
     global mx, my
     global cx, cy
+    global tori, koukaton, i
     if key == "Up":
         my -= 1
+        i += 1
     if key == "Down":
         my += 1
+        i += 1
     if key == "Left":
         mx -= 1
+        i += 1
     if key == "Right":
         mx += 1
+        i += 1
     if maze_lst[my][mx] == 0:
         cx, cy = mx * 100 + 50, my * 100 + 50
     else:
@@ -34,8 +39,13 @@ def main_proc():
             mx += 1
         if key == "Right":
             mx -= 1
+            i += 1
     canv.coords("tori", cx, cy)
     root.after(100, main_proc)
+    tori = tk.PhotoImage(file=f"./fig/{koukaton[i]}")
+    canv.create_image(cx, cy, image=tori, tag="tori")
+    if i == 9:
+            i = 0
     
 
 if __name__ == "__main__":
@@ -52,8 +62,12 @@ if __name__ == "__main__":
     # 練習10
     mm.show_maze(canv, maze_lst)
     
+    #動かすたびにこうかとんが変わるプログラム
+    koukaton = ["0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"]
+    
     # 練習3
-    tori = tk.PhotoImage(file="./fig/6.png")
+    i = 0
+    tori = tk.PhotoImage(file=f"./fig/0.png")
     mx, my = 1, 1 #練習11
     cx, cy = mx * 100 + 50, my * 100 + 50
     canv.create_image(cx, cy, image=tori, tag="tori") 
