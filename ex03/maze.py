@@ -56,6 +56,8 @@ def teki_proc():
      mmy = random.randint(1, 14)
      if maze_lst[my][mx] == 0:
         tx, ty = mmx * 100 + 50, mmy * 100 + 50
+        if maze_lst[my][mx] == 1:
+            tx, ty = 100 + 50,  100 + 50
      canv.coords("teki", tx, ty)
      root.after(500, teki_proc)
      
