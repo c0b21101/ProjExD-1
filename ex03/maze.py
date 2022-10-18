@@ -1,5 +1,6 @@
 import tkinter as tk
 import maze_maker as mm # 練習8
+import random
 
 # 練習5
 def key_down(event):
@@ -15,7 +16,7 @@ def key_up(event):
 def main_proc():
     global mx, my
     global cx, cy
-    global tori, koukaton, i
+    global tori, i
     if key == "Up":
         my -= 1
         i += 1
@@ -46,7 +47,18 @@ def main_proc():
     canv.create_image(cx, cy, image=tori, tag="tori")
     if i == 9:
             i = 0
-    
+ 
+ #敵の動き           
+# def teki_proc():
+#      global tx, ty
+#      global mmx, mmy
+#      mmx = random.randint(1, 14)
+#      mmy = random.randint(1, 14)
+#      if maze_lst[my][mx] == 0:
+#         tx, ty = mmx * 100 + 50, mmy * 100 + 50
+#      canv.coords("tori", cx, cy)
+#      root.after(100, teki_proc)
+     
 
 if __name__ == "__main__":
     root = tk.Tk()
@@ -74,6 +86,12 @@ if __name__ == "__main__":
     cx, cy = mx * 100 + 50, my * 100 + 50
     canv.create_image(cx, cy, image=tori, tag="tori") 
     
+    #敵の追加
+    teki= tk.PhotoImage(file="./fig/hito.png")
+    mmx, mmy = 1, 1
+    tx, ty = mmx * 100 + 50, mmy * 100 + 50
+    canv.create_image(cx, cy, image=teki, tag="teki")
+    
     # 練習4
     key = " " #現在押されているキー
     
@@ -82,5 +100,6 @@ if __name__ == "__main__":
     
     # 練習7
     root.after(1000,main_proc())
+    # root.after(1000,teki_proc())
     
     root.mainloop()
