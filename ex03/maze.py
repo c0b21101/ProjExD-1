@@ -47,4 +47,8 @@ if __name__ == "__main__":
     # 練習7
     root.after(1000,main_proc())
     
+    # 練習9
+    maze_lst = mm.make_maze(15, 9)
+    print(maze_lst)
+    
     root.mainloop()
