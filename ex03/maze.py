@@ -49,15 +49,15 @@ def main_proc():
             i = 0
  
  #敵の動き           
-# def teki_proc():
-#      global tx, ty
-#      global mmx, mmy
-#      mmx = random.randint(1, 14)
-#      mmy = random.randint(1, 14)
-#      if maze_lst[my][mx] == 0:
-#         tx, ty = mmx * 100 + 50, mmy * 100 + 50
-#      canv.coords("tori", cx, cy)
-#      root.after(100, teki_proc)
+def teki_proc():
+     global tx, ty
+     global mmx, mmy
+     mmx = random.randint(1, 14)
+     mmy = random.randint(1, 14)
+     if maze_lst[my][mx] == 0:
+        tx, ty = mmx * 100 + 50, mmy * 100 + 50
+     canv.coords("teki", tx, ty)
+     root.after(5000, teki_proc)
      
 
 if __name__ == "__main__":
@@ -89,7 +89,7 @@ if __name__ == "__main__":
     #敵の追加
     teki= tk.PhotoImage(file="./fig/hito.png")
     mmx, mmy = 1, 1
-    tx, ty = mmx * 100 + 50, mmy * 100 + 50
+    tx, ty = mmx * 100 + 50, mmy * 1300 + 50
     canv.create_image(cx, cy, image=teki, tag="teki")
     
     # 練習4
@@ -100,6 +100,6 @@ if __name__ == "__main__":
     
     # 練習7
     root.after(1000,main_proc())
-    # root.after(1000,teki_proc())
+    root.after(1000,teki_proc())
     
     root.mainloop()
