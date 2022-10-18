@@ -57,7 +57,7 @@ def teki_proc():
      if maze_lst[my][mx] == 0:
         tx, ty = mmx * 100 + 50, mmy * 100 + 50
      canv.coords("teki", tx, ty)
-     root.after(5000, teki_proc)
+     root.after(500, teki_proc)
      
 
 if __name__ == "__main__":
