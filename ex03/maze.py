@@ -59,7 +59,6 @@ def teki_proc():
      canv.coords("teki", tx, ty)
      root.after(500, teki_proc)
      
-
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("迷えるこうかとん") # 練習1
@@ -70,11 +69,8 @@ if __name__ == "__main__":
     # 練習9
     maze_lst = mm.make_maze(15, 9)
 
-    
-    
     # 練習10
     mm.show_maze(canv, maze_lst)
-
     
     #動かすたびにこうかとんが変わるプログラム
     koukaton = ["0.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"]
