@@ -7,6 +7,7 @@ def key_down(event):
     global key
     key = event.keysym
 
+
 # 練習6    
 def key_up(event):
     global key
