@@ -49,6 +49,9 @@ if __name__ == "__main__":
     
     # 練習9
     maze_lst = mm.make_maze(15, 9)
-    print(maze_lst)
+    #print(maze_lst)
+    
+    # 練習10
+    mm.show_maze(canv, maze_lst)
     
     root.mainloop()
