@@ -15,8 +15,8 @@ def check_bound(obj_rct, scr_rct):
         tate = -1
     return yoko, tate
 
-
 def main():
+    
     # 練習1
     pg.display.set_caption("逃げろ！こうかとん")
     scrn_sfc = pg.display.set_mode((1600, 900))
@@ -37,8 +37,19 @@ def main():
     bomb_rct = bomb_sfc.get_rect()
     bomb_rct.centerx = randint(0, scrn_rct.width)
     bomb_rct.centery = randint(0, scrn_rct.height)
+    
+    #ボールを増やす
+    bomb_sfc1 = pg.Surface((20, 20)) # 空のSurface
+    bomb_sfc1.set_colorkey((0, 0, 0)) # 四隅の黒い部分を透過させる
+    pg.draw.circle(bomb_sfc1, (0, 0, 255), (10, 10), 10) # 円を描く
+    bomb_rct1 = bomb_sfc1.get_rect()
+    bomb_rct1.centerx = randint(0, scrn_rct.width)
+    bomb_rct1.centery = randint(0, scrn_rct.height)
+    
     # 練習6
     vx, vy = +1, +1
+    vx1, vy1 = +1, +1
+    
 
 
     clock = pg.time.Clock() # 練習1
@@ -73,13 +84,33 @@ def main():
         vy *= tate
         bomb_rct.move_ip(vx, vy) # 練習6
         scrn_sfc.blit(bomb_sfc, bomb_rct) # 練習5
-
-        # 練習8
+        
+        #ボール2つの呼び出し
+        yoko1, tate1 = check_bound(bomb_rct1, scrn_rct)
+        vx1 *= yoko1
+        vy1 *= tate1
+        bomb_rct1.move_ip(vx1, vy1)
+        scrn_sfc.blit(bomb_sfc1, bomb_rct1)
+        
+        #時間ごとの加速
+        t = pg.time.get_ticks() #時間の収集
+        if t % 1000 == 0:
+            vx1 *= 1.1
+            vy1 *= 1.1
+            vx *= 1.05
+            vy *= 1.05
+        
+        #練習8
         if tori_rct.colliderect(bomb_rct): # こうかとんrctが爆弾rctと重なったら
-            return
-
+             return
+        if tori_rct.colliderect(bomb_rct1):
+             return
+        font = pg.font.Font(None, 80)
+        txt = font.render(str(t / 1000), True, "Black")
+        scrn_sfc.blit(txt, (50, 50))
+        
         pg.display.update() #練習2
-        clock.tick(1000)
+        clock.tick(1000) 
 
 if __name__ == "__main__":
     pg.init() # 初期化
