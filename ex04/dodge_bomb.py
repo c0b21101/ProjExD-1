@@ -49,8 +49,6 @@ def main():
     # 練習6
     vx, vy = +1, +1
     vx1, vy1 = +1, +1
-    
-
 
     clock = pg.time.Clock() # 練習1
     while True:
@@ -108,7 +106,7 @@ def main():
         font = pg.font.Font(None, 80)
         txt = font.render(str(t / 1000), True, "Black")
         scrn_sfc.blit(txt, (50, 50))
-        
+        #表示
         pg.display.update() #練習2
         clock.tick(1000) 
 
