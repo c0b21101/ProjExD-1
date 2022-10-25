@@ -117,3 +117,4 @@ if __name__ == "__main__":
     main() # ゲームの本体
     pg.quit() # 初期化の解除
     sys.exit()
+    
