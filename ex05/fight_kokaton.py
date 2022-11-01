@@ -76,7 +76,7 @@ class Text:
         self.font = pg.font.Font(None, size)
         self.txt = self.font.render(txt, True, color)
         self.x, self.y = xy
-        
+    
     def blit(self, scr:Screen):
         scr.sfc.blit(self.txt, (self.x, self.y))
   
@@ -141,16 +141,16 @@ def main():
         s = pg.time.get_ticks()
         bkd1.speed(s, 1.1, 1.1)
         bkd2.speed(s, 1.05, 1.05)
-        
+
         #タイムの実装
         time = Text(80, str(s/1000), "Black", (50, 50))
         time.blit(scr)
         
         # 練習8
         if kkt.rct.colliderect(bkd1.rct): # こうかとんrctが爆弾rctと重なったら
-             return
+              return
         if kkt.rct.colliderect(bkd2.rct): # こうかとんrctが爆弾rctと重なったら
-             return
+              return
 
         pg.display.update() #練習2
         clock.tick(1000)
