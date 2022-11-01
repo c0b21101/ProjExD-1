@@ -85,7 +85,7 @@ class Music:
     def __init__(self,m_faile):
         pg.mixer.init(frequency = 44100)    # 初期設定
         pg.mixer.music.load(m_faile)     # 音楽ファイルの読み込み
-        pg.mixer.music.play(1)              # 再生の終了
+        pg.mixer.music.play(1)             # 再生の終了
         for event in pg.event.get(): # 練習2
             if event.type == pg.K_SPACE:
                 pg.mixer.music.stop()
