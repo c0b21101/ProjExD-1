@@ -3,7 +3,6 @@ import sys
 from random import randint
 
 
-
 class Screen:
     def __init__(self, title, wh, bgimg):
         pg.display.set_caption(title) #逃げろ！こうかとん
@@ -70,6 +69,7 @@ class Bomb:
         if s % 1000 == 0:
             self.vx *= x_s
             self.vy *= y_s
+  
             
 class Text:
     def __init__(self, size, txt, color, xy):
@@ -79,7 +79,17 @@ class Text:
         
     def blit(self, scr:Screen):
         scr.sfc.blit(self.txt, (self.x, self.y))
-
+  
+        
+class Music:
+    def __init__(self,m_faile):
+        pg.mixer.init(frequency = 44100)    # 初期設定
+        pg.mixer.music.load(m_faile)     # 音楽ファイルの読み込み
+        pg.mixer.music.play(1)              # 再生の終了
+        for event in pg.event.get(): # 練習2
+            if event.type == pg.K_SPACE:
+                pg.mixer.music.stop()
+                return 0
 
 def check_bound(obj_rct, scr_rct):
     """
@@ -94,7 +104,6 @@ def check_bound(obj_rct, scr_rct):
         tate = -1
     return yoko, tate
 
-
 def main():
     # 練習1
     scr = Screen("負けるな！こうかとん", (1600, 900), "fig/pg_bg.jpg")
@@ -104,10 +113,13 @@ def main():
 
     # 練習5
     bkd1 = Bomb((255, 0, 0), 10, (+1, +1), scr)
+    
     #爆弾を増やす
     bkd2 = Bomb((0, 0, 255), 10, (+1, +1), scr)
     
-
+    #音楽の実装
+    Music("./fig/BGM.mp3")
+    
     clock = pg.time.Clock() # 練習1
     while True:
         scr.blit() # 練習2
@@ -130,17 +142,15 @@ def main():
         bkd1.speed(s, 1.1, 1.1)
         bkd2.speed(s, 1.05, 1.05)
         
-        
-        
         #タイムの実装
         time = Text(80, str(s/1000), "Black", (50, 50))
         time.blit(scr)
         
         # 練習8
-        # if kkt.rct.colliderect(bkd1.rct): # こうかとんrctが爆弾rctと重なったら
-        #     return
-        # if kkt.rct.colliderect(bkd2.rct): # こうかとんrctが爆弾rctと重なったら
-        #     return-
+        if kkt.rct.colliderect(bkd1.rct): # こうかとんrctが爆弾rctと重なったら
+             return
+        if kkt.rct.colliderect(bkd2.rct): # こうかとんrctが爆弾rctと重なったら
+             return
 
         pg.display.update() #練習2
         clock.tick(1000)
