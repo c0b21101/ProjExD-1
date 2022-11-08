@@ -8,6 +8,7 @@ import random
 QUESTION = ["tkinter", "geometry", "widgets", "messagebox", "configure", 
             "label", "column", "rowspan", "grid", "init"]
 
+#タイピングゲームの実装
 class Application(tk.Frame):
     def __init__(self, master):
         global Hp
