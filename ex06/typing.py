@@ -12,8 +12,9 @@ QUESTION = ["tkinter", "geometry", "widgets", "messagebox", "configure",
             "label", "column", "rowspan", "grid", "init"]
 
 
-#ゲーム内音楽の追加
+#ゲーム内音楽の追加　C0B21115 寺内大空
 class Music:
+    #BGMの追加
     def __init__(self,BGM):
         pygame.mixer.init(frequency = 44100,size = -16, channels = 2, buffer = 4096)    # 初期設定
         pygame.mixer.music.load(BGM)     # 音楽ファイルの読み込み
@@ -22,20 +23,19 @@ class Music:
             pygame.mixer.music.stop()
             return
 
+    #効果音の追加
     def se(se):
-        pygame.mixer.init()    # 初期設定
-        pygame.mixer.music.load(se)     # 音楽ファイルの読み込み
-        pygame.mixer.music.play(1)              # 音楽の再生回数(1回)
+        pygame.mixer.Sound(se).play()
         time.sleep(0.1)
-        pygame.mixer.music.stop()               # 再生の終了
         return 0
 
+    #リザルトの効果音の追加
     def end(se):
         pygame.mixer.init(frequency = 44100)    # 初期設定
-        pygame.mixer.music.load(se)     # 音楽ファイルの読み込み
-        pygame.mixer.music.play(6)              # 音楽の再生回数(1回)
-        time.sleep(1)
-        pygame.mixer.music.stop()               # 再生の終了
+        pygame.mixer.music.load(se)  
+        pygame.mixer.music.play(1)            
+        time.sleep(4)
+        pygame.mixer.music.stop()               
         return 0
 
 #タイピングゲームの実装
@@ -63,7 +63,7 @@ class Application(tk.Frame):
         # Tkインスタンスに対してキーイベント処理を実装
         self.master.bind("<KeyPress>", self.type_event)
 
-        #Music("MP3/BGM1.mp3")     
+        Music("MP3/BGM1.mp3")     
 
     # ウィジェットの生成と配置
     def create_widgets(self):
@@ -117,7 +117,7 @@ class Application(tk.Frame):
             if self.index == len(QUESTION):
                 self.flg = False
                 Music.end("MP3/kuria.mp3")
-                self.q_label2.configure(text="終了！")
+                self.q_label2.configure(text="終了！")  
                 messagebox.showinfo("you win!", f"あなたはこうかとんに勝ちました。\nあなたのスコアは{self.correct_cnt}/{self.index}問正解です。\nスコアタイムは{self.second}秒です。")
                 sys.exit(0)
             self.q_label2.configure(text=QUESTION[self.index])
@@ -125,6 +125,7 @@ class Application(tk.Frame):
             #失敗した時
             if Hp <= 0:
                 self.flg = False
+                Music.end("MP3/make.mp3")
                 self.q_label2.configure(text="終了！")
                 messagebox.showinfo("you lose!", f"あなたはこうかとんに負けました。\nあなたのスコアは{self.correct_cnt}/{self.index}問正解です。\nプレイタイムは{self.second}秒です。")
                 sys.exit(0)
