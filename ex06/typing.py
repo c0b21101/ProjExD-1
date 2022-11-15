@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import messagebox
-import pygame
 import pygame as pg
 import sys
 import time
@@ -16,26 +15,26 @@ QUESTION = ["tkinter", "geometry", "widgets", "messagebox", "configure",
 class Music:
     #BGMの追加
     def __init__(self,BGM):
-        pygame.mixer.init(frequency = 44100,size = -16, channels = 2, buffer = 4096)    # 初期設定
-        pygame.mixer.music.load(BGM)     # 音楽ファイルの読み込み
-        pygame.mixer.music.play(loops = -1) 
+        pg.mixer.init(frequency = 44100,size = -16, channels = 2, buffer = 4096)    # 初期設定
+        pg.mixer.music.load(BGM)     # 音楽ファイルの読み込み
+        pg.mixer.music.play(loops = -1) 
         if Hp == 0:
-            pygame.mixer.music.stop()
+            pg.mixer.music.stop()
             return
 
     #効果音の追加
     def se(se):
-        pygame.mixer.Sound(se).play()
+        pg.mixer.Sound(se).play()
         time.sleep(0.1)
         return 0
 
     #リザルトの効果音の追加
     def end(se):
-        pygame.mixer.init(frequency = 44100)    # 初期設定
-        pygame.mixer.music.load(se)  
-        pygame.mixer.music.play(1)            
+        pg.mixer.init(frequency = 44100)    # 初期設定
+        pg.mixer.music.load(se)  
+        pg.mixer.music.play(1)            
         time.sleep(4)
-        pygame.mixer.music.stop()               
+        pg.mixer.music.stop()               
         return 0
 
 #タイピングゲームの実装
