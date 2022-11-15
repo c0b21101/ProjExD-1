@@ -40,7 +40,6 @@ class Music:
 #タイピングゲームの実装
 class Application(tk.Frame):
     def __init__(self, master):
-        global Hp
         super().__init__(master)
         self.pack()
 
@@ -66,7 +65,6 @@ class Application(tk.Frame):
 
     # ウィジェットの生成と配置
     def create_widgets(self):
-        global Hp
         #お題の配置
         self.q_label = tk.Label(self, text="お題：", font=("",20))
         self.q_label.grid(row=0, column=0)
@@ -93,7 +91,6 @@ class Application(tk.Frame):
     def type_event(self, event):
         global Hp
         # 入力値がEnterの場合は答え合わせ
-
         if event.keysym == "Return":
             if self.q_label2["text"] == self.ans_label2["text"]:
                 self.result_label.configure(text="正解！", fg="red")
