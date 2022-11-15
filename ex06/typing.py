@@ -1,12 +1,42 @@
 import tkinter as tk
 from tkinter import messagebox
+import pygame
+import pygame as pg
 import sys
 import time
 import threading
 import random
 
+
 QUESTION = ["tkinter", "geometry", "widgets", "messagebox", "configure", 
             "label", "column", "rowspan", "grid", "init"]
+
+
+#ゲーム内音楽の追加
+class Music:
+    def __init__(self,BGM):
+        pygame.mixer.init(frequency = 44100,size = -16, channels = 2, buffer = 4096)    # 初期設定
+        pygame.mixer.music.load(BGM)     # 音楽ファイルの読み込み
+        pygame.mixer.music.play(loops = -1) 
+        if Hp == 0:
+            pygame.mixer.music.stop()
+            return
+
+    def se(se):
+        pygame.mixer.init()    # 初期設定
+        pygame.mixer.music.load(se)     # 音楽ファイルの読み込み
+        pygame.mixer.music.play(1)              # 音楽の再生回数(1回)
+        time.sleep(0.1)
+        pygame.mixer.music.stop()               # 再生の終了
+        return 0
+
+    def end(se):
+        pygame.mixer.init(frequency = 44100)    # 初期設定
+        pygame.mixer.music.load(se)     # 音楽ファイルの読み込み
+        pygame.mixer.music.play(6)              # 音楽の再生回数(1回)
+        time.sleep(1)
+        pygame.mixer.music.stop()               # 再生の終了
+        return 0
 
 #タイピングゲームの実装
 class Application(tk.Frame):
@@ -32,6 +62,8 @@ class Application(tk.Frame):
 
         # Tkインスタンスに対してキーイベント処理を実装
         self.master.bind("<KeyPress>", self.type_event)
+
+        #Music("MP3/BGM1.mp3")     
 
     # ウィジェットの生成と配置
     def create_widgets(self):
@@ -62,15 +94,18 @@ class Application(tk.Frame):
     def type_event(self, event):
         global Hp
         # 入力値がEnterの場合は答え合わせ
+
         if event.keysym == "Return":
             if self.q_label2["text"] == self.ans_label2["text"]:
                 self.result_label.configure(text="正解！", fg="red")
                 self.correct_cnt += 1
+                Music.se("MP3/kougeki.mp3")
             else:
                 Hp -= int(random.randint(20, 40))
                 self.hp_label = tk.Label(self, text=f"HP：{Hp}", width=10, anchor="w", font=("", 20))
                 self.hp_label.grid(row=2, column=10)
                 self.result_label.configure(text="残念！", fg="blue")
+                Music.se("MP3/damage1.mp3")
 
             # 解答欄をクリア
             self.ans_label2.configure(text="")
@@ -81,6 +116,7 @@ class Application(tk.Frame):
             #クリアの場合
             if self.index == len(QUESTION):
                 self.flg = False
+                Music.end("MP3/kuria.mp3")
                 self.q_label2.configure(text="終了！")
                 messagebox.showinfo("you win!", f"あなたはこうかとんに勝ちました。\nあなたのスコアは{self.correct_cnt}/{self.index}問正解です。\nスコアタイムは{self.second}秒です。")
                 sys.exit(0)
@@ -99,6 +135,7 @@ class Application(tk.Frame):
 
         else:
             # 入力値がEnter以外の場合は文字入力としてラベルに追記する
+            Music.se("MP3/kurikku.mp3")
             self.ans_label2["text"] += event.keysym
     
     #経過時間の設定
@@ -111,6 +148,7 @@ class Application(tk.Frame):
             #10秒毎に10ダメージ受ける機能の実装
             if self.second % 10 == 0:
                 Hp -= 10
+                Music.se("MP3/damage1.mp3")
                 self.hp_label = tk.Label(self, text=f"HP：{Hp}", width=10, anchor="w", font=("", 20))
                 self.hp_label.grid(row=2, column=10)
             self.time_label.configure(text=f"経過時間：{self.second}秒")
@@ -130,5 +168,4 @@ if __name__ == "__main__":
     tori = tk.PhotoImage(file="fig/0.png")
     cx, cy = 150, 150
     canv.create_image(cx, cy, image=tori, tag="tori")
-    
     root.mainloop()
