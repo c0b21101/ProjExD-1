@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+import pygame
 import pygame as pg
 import sys
 import time
